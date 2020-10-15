@@ -1,0 +1,71 @@
+<div style="margin: auto;">
+    <mat-toolbar color="primary">
+        <span>201800592 TODO LIST</span>
+    </mat-toolbar>
+    <div>
+        <form>
+            <table style="margin: auto;">
+                <tr class="myrow">
+                    <td class="enter">
+                        Enter Title:        
+                    </td>
+                    <td>
+                        <input [(ngModel)]="title"  placeholder="Add Title" name="title">    
+                    </td>
+                </tr>
+                <tr class="myrow">
+                    <td class="enter">
+                        Enter Description:  
+                    </td>
+                    <td>
+                        <input [(ngModel)]="description" placeholder="Add Description" name="description">
+                    </td> 
+                </tr>
+                <tr class="myrow">
+                    <td class="enter">
+                        Enter Date:
+                    </td>
+                    <td class="enter">
+                        <input type="date" [(ngModel)]="item_date" name="item_date">
+                    </td>
+                </tr>
+                <tr class="myrow">
+                    <td></td>
+                    <td>
+                        <button mat-raised-button color="primary" type="submit" *ngIf="title!=='' && description!==''" (click)="addItem($event)">Add Todo</button>
+                    </td>
+                </tr>    
+            </table>
+        </form>
+    </div>
+    <ul>
+        <li *ngFor="let todo of todoList; let i=index">
+            <mat-card>
+                <app-todo-list [title]="todo.title"></app-todo-list>
+                <mat-card-subtitle><strong>Details</strong></mat-card-subtitle>
+                <mat-card-content>
+                    <table class="todo-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{todo.id}}</td>
+                                <td>{{todo.title}}</td>
+                                <td>{{todo.description}}</td>
+                                <td>{{todo.item_date|date:'yyyy-MMM-dd'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </mat-card-content>
+            </mat-card>
+        </li>
+    </ul>
+</div>
+
+
